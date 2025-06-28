@@ -17,7 +17,6 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           title="À Propos"
-          subtitle="Spécialisé dans l'installation de tous types et formes de planchers en bois, intérieurs et extérieurs."
         />
 
         <div className="mt-12 md:mt-20">
@@ -30,7 +29,7 @@ export default function About() {
                 <div className="absolute -left-4 top-0 w-1 h-16 bg-gradient-to-b from-primary to-primary/50 rounded-full"></div>
                 
 
-                <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
+                <div className="space-y-4 text-gray-600 text-sm md:text-lg leading-relaxed">
                   <p>
                     Chez <strong className="text-primary">Decora Sol</strong>, nous sommes spécialisés dans
                     l'installation de planchers en bois de haute qualité pour vos espaces intérieurs et extérieurs.
