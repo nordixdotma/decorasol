@@ -109,7 +109,7 @@ export default function About() {
                   {/* Image */}
                   <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                     <Image
-                      src="/favicon.png"
+                      src="/favicon.jpg"
                       alt="Installation de planchers en bois par Decora Sol à Marrakech"
                       width={600}
                       height={700}

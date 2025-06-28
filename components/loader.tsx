@@ -66,7 +66,7 @@ export default function Loader() {
         }`}
       >
         <Image
-          src="/favicon.png"
+          src="/favicon.jpg"
           alt="DECO DARI Logo"
           width={120}
           height={60}

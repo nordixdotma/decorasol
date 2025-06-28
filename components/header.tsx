@@ -51,7 +51,7 @@ export default function Header() {
             {/* Conditional rendering of logos based on scroll position */}
             {isScrolled ? (
               <Image
-                src="/favicon.png"
+                src="/favicon.jpg"
                 alt="DARI Logo"
                 width={120}
                 height={60}
@@ -59,7 +59,7 @@ export default function Header() {
               />
             ) : (
               <Image
-                src="/favicon.png"
+                src="/favicon.jpg"
                 alt="DARI Logo"
                 width={120}
                 height={60}
@@ -130,7 +130,7 @@ export default function Header() {
             {/* Header - Fixed at top */}
             <div className="flex-shrink-0 flex items-center justify-between p-4 pt-6">
               <Image
-                src="/favicon.png"
+                src="/favicon.jpg"
                 alt="Decora Sol Logo"
                 width={120}
                 height={60}
