@@ -70,7 +70,7 @@ export default function Loader() {
           alt="DECO DARI Logo"
           width={120}
           height={60}
-          className="h-16 w-auto"
+          className="h-16 w-auto rounded-full"
           priority
         />
       </div>
