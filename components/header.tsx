@@ -134,7 +134,7 @@ export default function Header() {
                 alt="Decora Sol Logo"
                 width={120}
                 height={60}
-                className="h-10 w-auto brightness-0 invert rounded-full"
+                className="h-10 w-auto rounded-full"
               />
             </div>
 
