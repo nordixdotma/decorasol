@@ -2,13 +2,13 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Deco Dari Ameublement",
-    short_name: "Deco Dari",
-    description: "Design d'intérieur pour résidences, hôtels et établissements médicaux à Marrakech",
+    name: "Decora Sol",
+    short_name: "Decora Sol",
+    description: "Wood flooring solutions for residential and commercial spaces.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#41879e",
+    theme_color: "#8b4513",
     icons: [
       {
         src: "/favicon.ico",

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://decodariambl.ma/sitemap.xml
+Sitemap: https://decorasol.ma/sitemap.xml
