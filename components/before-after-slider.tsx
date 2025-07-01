@@ -1,18 +1,21 @@
 "use client"
 
 import type React from "react"
+
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
+interface BeforeAfterItem {
+  id: number
+  beforeImage: string
+  afterImage: string
+  title?: string
+  description?: string
+}
+
 interface BeforeAfterSliderProps {
-  items: {
-    id: number
-    beforeImage: string
-    afterImage: string
-    title?: string
-    description?: string
-  }[]
+  items: BeforeAfterItem[]
 }
 
 export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
@@ -21,80 +24,59 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const handlePrev = () => {
+  const currentItem = items[currentIndex]
+
+  // Navigation functions
+  const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1))
     setSliderPosition(50)
   }
 
-  const handleNext = () => {
+  const goToNext = () => {
     setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1))
     setSliderPosition(50)
   }
 
+  // Position calculation
+  const calculatePosition = (clientX: number) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = clientX - rect.left
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
+    setSliderPosition(percentage)
+  }
+
+  // Mouse events
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true)
-    updateSliderPosition(e)
+    calculatePosition(e.clientX)
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging) {
-      updateSliderPosition(e)
-    }
+    if (isDragging) calculatePosition(e.clientX)
   }
 
-  const handleMouseUp = () => {
-    setIsDragging(false)
-  }
-
+  // Touch events
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true)
-    updateSliderPositionTouch(e)
+    calculatePosition(e.touches[0].clientX)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging) {
-      updateSliderPositionTouch(e)
-    }
+    if (isDragging) calculatePosition(e.touches[0].clientX)
   }
 
-  const handleTouchEnd = () => {
-    setIsDragging(false)
-  }
+  const handleEnd = () => setIsDragging(false)
 
-  const updateSliderPosition = (e: React.MouseEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
-    setSliderPosition(percentage)
-  }
-
-  const updateSliderPositionTouch = (e: React.TouchEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = e.touches[0].clientX - rect.left
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
-    setSliderPosition(percentage)
-  }
-
+  // Global mouse tracking for smooth dragging
   useEffect(() => {
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (isDragging && containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
-        setSliderPosition(percentage)
-      }
-    }
+    if (!isDragging) return
 
-    const handleGlobalMouseUp = () => {
-      setIsDragging(false)
-    }
+    const handleGlobalMouseMove = (e: MouseEvent) => calculatePosition(e.clientX)
+    const handleGlobalMouseUp = () => setIsDragging(false)
 
-    if (isDragging) {
-      document.addEventListener("mousemove", handleGlobalMouseMove)
-      document.addEventListener("mouseup", handleGlobalMouseUp)
-    }
+    document.addEventListener("mousemove", handleGlobalMouseMove)
+    document.addEventListener("mouseup", handleGlobalMouseUp)
 
     return () => {
       document.removeEventListener("mousemove", handleGlobalMouseMove)
@@ -102,30 +84,28 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
     }
   }, [isDragging])
 
-  if (!items || items.length === 0) {
-    return <div className="text-center p-8 text-gray-500">No comparison images available</div>
+  if (!items?.length) {
+    return <div className="text-center p-8 text-gray-500">No images available</div>
   }
-
-  const currentItem = items[currentIndex]
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Main Comparison Container */}
+      {/* Main Container */}
       <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-        {/* Image Comparison */}
+        {/* Image Comparison Area */}
         <div
           ref={containerRef}
-          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[400px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
+          onMouseUp={handleEnd}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onTouchEnd={handleEnd}
           style={{ touchAction: "none" }}
         >
-          {/* After image (full width) */}
-          <div className="absolute inset-0 w-full h-full">
+          {/* After Image (Background) */}
+          <div className="absolute inset-0">
             <Image
               src={currentItem.afterImage || "/placeholder.svg"}
               alt="After transformation"
@@ -134,13 +114,12 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
               priority
               draggable={false}
             />
-            {/* After overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </div>
 
-          {/* Before image (clipped) */}
+          {/* Before Image (Clipped) */}
           <div
-            className="absolute inset-0 h-full overflow-hidden transition-all duration-75 ease-out"
+            className="absolute inset-0 overflow-hidden transition-all duration-75 ease-out"
             style={{ width: `${sliderPosition}%` }}
           >
             <Image
@@ -151,22 +130,20 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
               priority
               draggable={false}
             />
-            {/* Before overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </div>
 
-          {/* Slider line with enhanced design */}
+          {/* Slider Line */}
           <div
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none z-20 transition-all duration-75 ease-out"
+            className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-20 transition-all duration-75 ease-out"
             style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
           >
-            {/* Gradient line effect */}
             <div className="absolute inset-0 bg-gradient-to-b from-white via-primary to-white opacity-80" />
           </div>
 
-          {/* Enhanced slider handle */}
+          {/* Slider Handle */}
           <div
-            className="absolute top-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center pointer-events-none shadow-2xl border-4 border-primary z-30 transition-all duration-75 ease-out hover:scale-110"
+            className="absolute top-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-primary z-30 transition-all duration-75 ease-out"
             style={{
               left: `${sliderPosition}%`,
               transform: "translate(-50%, -50%)",
@@ -174,15 +151,12 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
             }}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
               className="text-primary"
             >
               <path d="M8 3L4 7l4 4" />
@@ -193,8 +167,12 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
             </svg>
           </div>
 
-          {/* Modern labels with improved design */}
-          <div className="absolute top-6 left-6 z-10">
+          {/* Labels with dynamic visibility */}
+          <div
+            className={`absolute top-6 left-6 z-10 transition-opacity duration-200 ${
+              sliderPosition < 25 ? "opacity-0" : "opacity-100"
+            }`}
+          >
             <div className="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
               <span className="flex items-center">
                 <div className="w-2 h-2 bg-red-400 rounded-full mr-2 animate-pulse" />
@@ -203,7 +181,11 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
             </div>
           </div>
 
-          <div className="absolute top-6 right-6 z-10">
+          <div
+            className={`absolute top-6 right-6 z-10 transition-opacity duration-200 ${
+              sliderPosition > 75 ? "opacity-0" : "opacity-100"
+            }`}
+          >
             <div className="bg-primary/90 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
               <span className="flex items-center">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
@@ -214,18 +196,18 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
         </div>
       </div>
 
-      {/* Only show navigation buttons if there's more than one item */}
+      {/* Navigation (only if multiple items) */}
       {items.length > 1 && (
         <div className="flex justify-center mt-6 space-x-4">
           <button
-            onClick={handlePrev}
+            onClick={goToPrevious}
             className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow-md flex items-center justify-center transition-colors border border-gray-200"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6 text-gray-800" />
           </button>
           <button
-            onClick={handleNext}
+            onClick={goToNext}
             className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow-md flex items-center justify-center transition-colors border border-gray-200"
             aria-label="Next image"
           >
