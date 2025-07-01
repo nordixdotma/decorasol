@@ -27,7 +27,7 @@ export default function GalleryTabs({ beforeAfterItems }: GalleryTabsProps) {
             value="projects"
             className="rounded-full px-6 py-2 data-[state=active]:bg-primary data-[state=active]:text-white"
           >
-            Projets
+            Nos Réalisations
           </TabsTrigger>
         </TabsList>
       </div>

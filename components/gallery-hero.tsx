@@ -19,7 +19,7 @@ export default function GalleryHero() {
       <div className="relative h-full flex items-end justify-start">
         <div className="text-left text-white p-4 md:p-12 pb-16 md:pb-24 max-w-2xl">
           <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">Notre Galerie</h1>
-          <p className="text-base md:text-xl">Des transformations qui parlent d'elles-mêmes.</p>
+        <p className="text-base md:text-xl">Découvrez la transformation de vos espaces avec nos planchers en bois.</p>
         </div>
       </div>
     </section>

@@ -6,23 +6,23 @@ import Breadcrumb from "@/components/breadcrumb"
 import GalleryTabs from "@/components/gallery-tabs"
 
 export const metadata: Metadata = {
-  title: "Galerie | Deco Dari Ameublement",
+  title: "Galerie | Decora Sol - Réalisations Planchers Bois",
   description:
-    "Découvrez nos transformations spectaculaires d'intérieurs résidentiels, hôteliers et médicaux à Marrakech. Avant/Après de nos projets de design.",
+    "Découvrez nos réalisations d'installation de planchers en bois à Marrakech. Avant/Après de nos projets de parquet et revêtements de sol.",
   alternates: {
     canonical: "/gallery",
   },
   openGraph: {
-    title: "Galerie | Deco Dari Ameublement",
+    title: "Galerie | Decora Sol - Réalisations Planchers Bois",
     description:
-      "Découvrez nos transformations spectaculaires d'intérieurs résidentiels, hôteliers et médicaux à Marrakech.",
-    url: "https://decodariambl.ma/gallery",
+      "Découvrez nos réalisations d'installation de planchers en bois à Marrakech. Avant/Après de nos projets de parquet et revêtements de sol.",
+    url: "https://decorasol.ma/gallery",
     images: [
       {
         url: "/aboutimage.png",
         width: 1200,
         height: 630,
-        alt: "Galerie Deco Dari - Avant/Après",
+        alt: "Galerie Decora Sol - Planchers Bois Avant/Après",
       },
     ],
   },
@@ -76,7 +76,10 @@ export default function GalleryPage() {
 
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle title="Notre Galerie" subtitle="Découvrez nos réalisations et projets de design d'intérieur." />
+          <SectionTitle
+            title="Galerie de Nos Planchers"
+            subtitle="Découvrez nos réalisations d'installation de planchers en bois, du parquet classique aux terrasses extérieures."
+          />
 
           {/* Gallery Tabs */}
           <div className="mt-12">

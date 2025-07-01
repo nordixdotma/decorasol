@@ -6,57 +6,113 @@ import ProjectCard from "./project-card"
 const projects = [
   {
     id: 1,
-    title: "Villa Moderne à Marrakech",
+    title: "Parquet Chêne Massif - Villa Marrakech",
     coverImage: "/1.jpg",
-    category: "Résidentiel",
+    category: "Plancher Intérieur",
     images: [
       {
         src: "/1.jpg",
-        alt: "Salon moderne avec vue sur jardin",
+        alt: "Salon avec parquet chêne massif",
       },
       {
         src: "/1.jpg",
-        alt: "Cuisine ouverte avec îlot central",
+        alt: "Chambre avec plancher bois naturel",
       },
       {
         src: "/1.jpg",
-        alt: "Suite parentale avec dressing",
+        alt: "Couloir avec parquet traditionnel",
       },
       {
         src: "/1.jpg",
-        alt: "Salle de bain en marbre",
+        alt: "Détail finition parquet chêne",
       },
       {
         src: "/1.jpg",
-        alt: "Terrasse avec piscine",
+        alt: "Vue d'ensemble installation terminée",
       },
     ],
   },
   {
     id: 2,
-    title: "Clinique Dentaire Premium",
+    title: "Terrasse Bois Exotique - Riad",
     coverImage: "/1.jpg",
-    category: "Médical",
+    category: "Plancher Extérieur",
     images: [
       {
         src: "/1.jpg",
-        alt: "Réception de la clinique",
+        alt: "Terrasse bois exotique avant installation",
       },
       {
         src: "/1.jpg",
-        alt: "Salle d'attente",
+        alt: "Préparation support terrasse",
       },
       {
         src: "/1.jpg",
-        alt: "Cabinet de consultation",
+        alt: "Installation lames de terrasse",
       },
       {
         src: "/1.jpg",
-        alt: "Salle de soins",
+        alt: "Finition bordures terrasse",
       },
       {
         src: "/1.jpg",
-        alt: "Bureau administratif",
+        alt: "Terrasse bois terminée avec mobilier",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Stratifié Premium - Appartement Moderne",
+    coverImage: "/1.jpg",
+    category: "Plancher Intérieur",
+    images: [
+      {
+        src: "/1.jpg",
+        alt: "Salon moderne avec stratifié premium",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Cuisine ouverte plancher stratifié",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Chambre avec sol stratifié effet bois",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Détail pose stratifié sans colle",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Finition plinthes et seuils",
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Rénovation Parquet Ancien - Maison Traditionnelle",
+    coverImage: "/1.jpg",
+    category: "Rénovation",
+    images: [
+      {
+        src: "/1.jpg",
+        alt: "Parquet ancien avant rénovation",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Ponçage parquet traditionnel",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Application vernis protection",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Parquet rénové brillant",
+      },
+      {
+        src: "/1.jpg",
+        alt: "Salon avec parquet restauré",
       },
     ],
   },

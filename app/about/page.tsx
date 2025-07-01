@@ -8,23 +8,23 @@ import FloatingContact from "@/components/floating-contact"
 import Breadcrumb from "@/components/breadcrumb"
 
 export const metadata: Metadata = {
-  title: "À Propos | Deco Dari Ameublement",
+  title: "À Propos | Decora Sol - Spécialiste Planchers en Bois",
   description:
-    "Découvrez notre histoire, notre expertise et notre processus de design d'intérieur pour résidences, hôtels et établissements médicaux à Marrakech.",
+    "Découvrez Decora Sol, votre expert en installation de planchers en bois à Marrakech. Notre devise est la qualité pour tous vos projets de revêtement de sol.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "À Propos | Deco Dari Ameublement",
+    title: "À Propos | Decora Sol - Spécialiste Planchers en Bois",
     description:
-      "Découvrez notre histoire, notre expertise et notre processus de design d'intérieur pour résidences, hôtels et établissements médicaux à Marrakech.",
-    url: "https://decodariambl.ma/about",
+      "Découvrez Decora Sol, votre expert en installation de planchers en bois à Marrakech. Notre devise est la qualité pour tous vos projets de revêtement de sol.",
+    url: "https://decorasol.ma/about",
     images: [
       {
         url: "/aboutimage.png",
         width: 800,
         height: 600,
-        alt: "À Propos de Deco Dari Ameublement",
+        alt: "À Propos de Decora Sol - Installation Planchers Bois",
       },
     ],
   },
@@ -37,21 +37,17 @@ export default function AboutPage() {
       <section className="relative h-[50dvh] w-full overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src="/2.jpg"
-            alt="À Propos de Deco Dari Ameublement"
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src="/2.jpg" alt="À Propos de Deco Dari Ameublement" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
 
         {/* Content - Aligned to the left and positioned lower */}
         <div className="relative h-full flex items-end justify-start">
           <div className="text-left text-white p-4 md:p-12 pb-16 md:pb-24 max-w-2xl">
-            <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">À Propos de Nous</h1>
-            <p className="text-base md:text-xl">Experts en design d'intérieur résidentiel et commercial.</p>
+            <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">À Propos de Decora Sol</h1>
+            <p className="text-base md:text-xl">
+              Spécialistes en installation de planchers en bois depuis plus de 5 ans.
+            </p>
           </div>
         </div>
       </section>
@@ -73,24 +69,24 @@ export default function AboutPage() {
                 <span className="text-primary font-medium">Notre Histoire</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight mb-6">
-                Passion pour le <span className="text-primary">Design d'Intérieur</span>
+                Passion pour les <span className="text-primary">Planchers en Bois</span>
               </h2>
 
               <div className="space-y-6 text-gray-600">
                 <p>
-                  Chez Deco dari ameublement, nous sommes passionnés par la création d'espaces qui allient esthétique et
-                  fonctionnalité. Notre équipe de designers et d'artisans qualifiés travaille en étroite collaboration
-                  avec nos clients pour transformer leur vision en réalité.
+                  Chez <strong className="text-primary">Decora Sol</strong>, nous sommes spécialisés dans l'installation
+                  de tous types et formes de planchers en bois, intérieurs et extérieurs à Marrakech. Notre devise est
+                  la qualité.
                 </p>
                 <p>
-                  Fondée avec la conviction que chaque espace a un potentiel unique, notre entreprise s'est développée
-                  pour devenir un leader dans la conception d'intérieurs personnalisés pour les résidences, les hôtels
-                  et les établissements médicaux au Maroc.
+                  Fondée avec la passion du bois et l'expertise artisanale, notre entreprise s'est développée pour
+                  devenir une référence dans l'installation de planchers en bois de qualité supérieure. Nous travaillons
+                  avec les meilleurs matériaux pour garantir durabilité et esthétique.
                 </p>
                 <p>
-                  Notre approche collaborative et notre attention aux détails nous permettent de créer des espaces qui
-                  non seulement impressionnent visuellement, mais qui répondent également parfaitement aux besoins
-                  fonctionnels de nos clients.
+                  Notre approche personnalisée et notre attention aux détails nous permettent de créer des sols qui non
+                  seulement embellissent vos espaces, mais qui résistent également à l'épreuve du temps avec un
+                  entretien minimal.
                 </p>
               </div>
             </div>
@@ -116,7 +112,7 @@ export default function AboutPage() {
                 <span className="text-primary font-medium">Nos Spécialisations</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight">
-                Expertise dans <span className="text-primary">Divers Secteurs</span>
+                Nos Types de <span className="text-primary">Planchers en Bois</span>
               </h2>
             </div>
 
@@ -127,24 +123,23 @@ export default function AboutPage() {
                   <Users className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                  Résidentiel
+                  Planchers Intérieurs
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Nous transformons les maisons en foyers, en créant des espaces personnalisés qui reflètent la
-                  personnalité et le style de vie de nos clients.
+                  Nous offrons une vaste gamme de planchers intérieurs pour tous les goûts et budgets.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Appartements et villas</span>
+                    <span className="text-gray-700">Parquet</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Espaces de vie sur mesure</span>
+                    <span className="text-gray-700">Stratifié</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Rénovations complètes</span>
+                    <span className="text-gray-700">Bois Massif</span>
                   </li>
                 </ul>
               </div>
@@ -155,24 +150,21 @@ export default function AboutPage() {
                   <Building2 className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                  Hôtellerie
+                  Planchers Extérieurs
                 </h3>
-                <p className="text-gray-600 mb-6">
-                  Nous créons des expériences mémorables pour les clients d'hôtels grâce à des designs d'intérieur
-                  captivants et fonctionnels.
-                </p>
+                <p className="text-gray-600 mb-6">Des solutions durables et esthétiques pour vos espaces extérieurs.</p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Lobbies et espaces communs</span>
+                    <span className="text-gray-700">Terrasses</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Chambres et suites</span>
+                    <span className="text-gray-700">Balcons</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Restaurants et bars</span>
+                    <span className="text-gray-700">Jardins</span>
                   </li>
                 </ul>
               </div>
@@ -183,24 +175,23 @@ export default function AboutPage() {
                   <Stethoscope className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                  Médical
+                  Rénovation & Entretien
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Nous concevons des établissements médicaux qui favorisent la guérison et le bien-être avec un
-                  équilibre parfait.
+                  Redonnez vie à vos planchers avec nos services de rénovation et d'entretien.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Laboratoires médicaux</span>
+                    <span className="text-gray-700">Ponçage</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Cliniques et cabinets</span>
+                    <span className="text-gray-700">Vitrification</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
-                    <span className="text-gray-700">Espaces d'accueil des patients</span>
+                    <span className="text-gray-700">Réparation</span>
                   </li>
                 </ul>
               </div>
@@ -214,7 +205,7 @@ export default function AboutPage() {
                 <span className="text-primary font-medium">Notre Méthodologie</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight">
-                Un Processus <span className="text-primary">Éprouvé</span> en 4 Étapes
+                Notre Processus <span className="text-primary">d'Installation</span> en 4 Étapes
               </h2>
             </div>
 
@@ -233,12 +224,9 @@ export default function AboutPage() {
                     </div>
                     <div className="pt-4">
                       <h3 className="text-xl font-bold mt-2 mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                        Consultation
+                        Évaluation
                       </h3>
-                      <p className="text-gray-600">
-                        Nous commençons par comprendre vos besoins, préférences et budget. Cette étape cruciale nous
-                        permet de définir clairement les objectifs du projet.
-                      </p>
+                      <p className="text-gray-600">Analyse de l'espace et choix du bois</p>
                     </div>
                   </div>
                 </div>
@@ -253,12 +241,9 @@ export default function AboutPage() {
                     </div>
                     <div className="pt-4">
                       <h3 className="text-xl font-bold mt-2 mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                        Étude et Conception
+                        Préparation
                       </h3>
-                      <p className="text-gray-600">
-                        Notre équipe analyse l'espace et développe des concepts de design. Nous créons des plans
-                        détaillés pour visualiser votre projet.
-                      </p>
+                      <p className="text-gray-600">Préparation du support et acclimatation</p>
                     </div>
                   </div>
                 </div>
@@ -273,12 +258,9 @@ export default function AboutPage() {
                     </div>
                     <div className="pt-4">
                       <h3 className="text-xl font-bold mt-2 mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                        Modélisation 3D
+                        Installation
                       </h3>
-                      <p className="text-gray-600">
-                        Nous créons des modèles 3D détaillés de votre espace, vous permettant de visualiser le résultat
-                        final avant le début des travaux.
-                      </p>
+                      <p className="text-gray-600">Pose professionnelle du plancher</p>
                     </div>
                   </div>
                 </div>
@@ -293,12 +275,9 @@ export default function AboutPage() {
                     </div>
                     <div className="pt-4">
                       <h3 className="text-xl font-bold mt-2 mb-4 text-gray-800 group-hover:text-primary transition-colors duration-300">
-                        Exécution
+                        Finition
                       </h3>
-                      <p className="text-gray-600">
-                        Notre équipe d'artisans qualifiés met en œuvre le design avec une attention méticuleuse aux
-                        détails, transformant les plans en réalité.
-                      </p>
+                      <p className="text-gray-600">Ponçage, vitrification et nettoyage final</p>
                     </div>
                   </div>
                 </div>
@@ -317,11 +296,11 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight mb-4">
-              Prêt à Transformer <span className="text-primary">Votre Espace</span>?
+              Prêt à Installer <span className="text-primary">Votre Plancher en Bois</span>?
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-              Que vous ayez besoin d'un design d'intérieur pour votre résidence, votre hôtel ou votre établissement
-              médical, notre équipe est prête à donner vie à votre vision.
+              Que ce soit pour votre maison, votre commerce ou vos espaces extérieurs, notre équipe est prête à
+              transformer vos sols avec des planchers en bois de qualité supérieure.
             </p>
             <Link href="/contact">
               <Button className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:translate-y-[-2px] group">
