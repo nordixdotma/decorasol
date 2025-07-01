@@ -137,7 +137,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     <div className="relative h-full">
       {/* Card */}
       <div
-        className={`${testimonial.bgColor} rounded-2xl p-6 md:p-8 h-full flex flex-col shadow-lg border border-primary/20 relative overflow-hidden`}
+        className={`${testimonial.bgColor} rounded-2xl p-4 md:p-6 h-full flex flex-col shadow-lg border border-primary/20 relative overflow-hidden`}
       >
         {/* Profile Image - positioned at top right with rounded bottom-left corner */}
         <div className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden">
@@ -153,13 +153,13 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
 
         {/* Brand Logo - top left */}
-        <div className="flex items-center mb-6">
+        <div className="flex items-center mb-4">
           <Image src="/favicon.jpg" alt="Decora Sol" width={32} height={32} className="rounded-full mr-3" />
           <span className="font-bold text-lg text-gray-800">Decora Sol</span>
         </div>
 
         {/* Quote Icon */}
-        <div className="mb-4">
+        <div className="mb-3">
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
 
         {/* Quote */}
-        <p className="text-gray-700 text-sm md:text-base mb-6 flex-grow leading-relaxed pr-6">{testimonial.quote}</p>
+        <p className="text-gray-700 text-sm md:text-base mb-4 flex-grow leading-relaxed pr-4">{testimonial.quote}</p>
 
         {/* Footer with name and role */}
         <div className="flex justify-between items-end">

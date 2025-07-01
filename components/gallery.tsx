@@ -10,16 +10,22 @@ const beforeAfterItems = [
     id: 1,
     beforeImage: "/4.avif",
     afterImage: "/5.avif",
+    title: "Transformation Salon Moderne",
+    description: "Parquet chêne massif avec finition naturelle",
   },
   {
     id: 2,
     beforeImage: "/1.avif",
     afterImage: "/2.avif",
+    title: "Rénovation Chambre Principale",
+    description: "Plancher stratifié effet bois authentique",
   },
   {
     id: 3,
     beforeImage: "/3.avif",
     afterImage: "/4.avif",
+    title: "Aménagement Terrasse Extérieure",
+    description: "Bois composite résistant aux intempéries",
   },
 ]
 
