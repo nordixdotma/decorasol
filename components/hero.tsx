@@ -78,9 +78,9 @@ export default function Hero() {
                 </Button>
               </Link>
 
-              {/* Phone Button with Blue Transparent Background and Shiny Effect */}
+              {/* Phone Button with amber Transparent Background and Shiny Effect */}
               <a href="tel:+212666865356" className="w-full sm:w-auto">
-                <Button className="group relative overflow-hidden rounded-md bg-blue-500/30 backdrop-blur-sm text-white border border-blue-400/50 hover:bg-blue-600/40 hover:border-blue-300/70 transition-all duration-700 px-8 py-6 text-lg font-medium shadow-lg w-full sm:w-auto shiny-button">
+                <Button className="group relative overflow-hidden rounded-md bg-amber-500/30 backdrop-blur-sm text-white border border-amber-400/50 hover:bg-amber-600/40 hover:border-amber-300/70 transition-all duration-700 px-8 py-6 text-lg font-medium shadow-lg w-full sm:w-auto shiny-button">
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     <Phone className="h-5 w-5" />
                     +212 666-865356

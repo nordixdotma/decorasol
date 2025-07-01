@@ -1,291 +1,258 @@
 "use client"
 
-import type React from "react"
-
-import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Home, Info, ImageIcon, Phone, ArrowRight } from "lucide-react"
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [hovered, setHovered] = useState<number | null>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
 
+  // Check if current page needs scrolled header
+  const shouldShowScrolledHeader = false // You can customize this based on your needs
+
+  // Scroll detection
+  const { scrollY } = useScroll()
+  const [visible, setVisible] = useState(shouldShowScrolledHeader)
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 100 || shouldShowScrolledHeader) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  })
+
+  // Set visible state on mount for specific pages
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
+    if (shouldShowScrolledHeader) {
+      setVisible(true)
+    }
+  }, [shouldShowScrolledHeader])
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false)
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
     }
-  }, [])
 
-  // Prevent body scroll when menu is open
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [mobileMenuOpen])
+
+  // Toggle body scroll when mobile menu is open/closed
   useEffect(() => {
-    if (isMenuOpen) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden"
     } else {
       document.body.style.overflow = ""
     }
+
     return () => {
       document.body.style.overflow = ""
     }
-  }, [isMenuOpen])
+  }, [mobileMenuOpen])
+
+  // Navigation items for Decora Sol
+  const navItems = [
+    { name: "Accueil", href: "/" },
+    { name: "À Propos", href: "/about" },
+    { name: "Galerie", href: "/gallery" },
+    { name: "Contact", href: "/contact" },
+  ]
+
+  const toggleDropdown = (name: string) => {
+    setActiveDropdown(activeDropdown === name ? null : name)
+  }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "header-solid" : "header-transparent"
-      }`}
-    >
-      <div className={`max-w-7xl mx-auto px-4 ${isScrolled ? "py-3" : "py-4"} transition-padding duration-300`}>
-        <div className="flex items-center justify-between">
-          <Link href="/" className="z-10">
-            {/* Conditional rendering of logos based on scroll position */}
-            {isScrolled ? (
-              <Image
-                src="/favicon.jpg"
-                alt="DARI Logo"
-                width={120}
-                height={60}
-                className={`${isScrolled ? "h-12" : "h-14"} w-auto transition-all duration-300 rounded-full`}
-              />
-            ) : (
-              <Image
-                src="/favicon.jpg"
-                alt="DARI Logo"
-                width={120}
-                height={60}
-                className="h-14 w-auto transition-opacity duration-300 rounded-full"
-              />
-            )}
-          </Link>
+    <motion.header ref={headerRef} className="fixed top-0 left-0 right-0 z-40 w-full">
+      {/* Desktop Navigation */}
+      <motion.div
+        animate={{
+          backdropFilter: visible ? "blur(10px)" : "none",
+          boxShadow: visible
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "75%" : "100%",
+          y: visible ? 20 : 0,
+          backgroundColor: visible ? "#FFFFFF" : "transparent",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 50,
+        }}
+        style={{
+          minWidth: "800px",
+          borderRadius: visible ? "0.375rem" : "9999px",
+        }}
+        className={`relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex ${
+          visible ? "bg-white/80" : "bg-transparent"
+        }`}
+      >
+        {/* Logo */}
+        <Link href="/" className="relative z-20 mr-4 flex items-center px-2 py-1">
+          <Image src="/favicon.jpg" alt="Decora Sol" width={150} height={50} className="h-12 w-auto rounded-full" />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center justify-center space-x-8">
-            <NavLinks textColor={isScrolled ? "text-black" : "text-white"} />
-          </nav>
+        {/* Nav Items */}
+        <motion.div
+          onMouseLeave={() => setHovered(null)}
+          className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex"
+        >
+          {navItems.map((item, idx) => (
+            <div key={`nav-item-${idx}`} className="relative">
+              <Link
+                onMouseEnter={() => setHovered(idx)}
+                className={`relative px-4 py-2 ${
+                  visible ? "text-neutral-600" : "text-white"
+                } ${pathname && pathname === item.href ? "font-semibold" : ""} hover:text-primary transition-colors`}
+                href={item.href}
+              >
+                {hovered === idx && (
+                  <motion.div layoutId="hovered" className="absolute inset-0 h-full w-full rounded-full" />
+                )}
+                <span className="relative z-20 after:absolute after:bottom-[-4px] after:left-1/2 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:-translate-x-1/2 hover:after:w-full">
+                  {item.name}
+                </span>
+              </Link>
+            </div>
+          ))}
+        </motion.div>
 
-          {/* Restyled Contact Button */}
-          <Link href="/">
+        {/* CTA Button */}
+        <div className="hidden md:flex items-center justify-end relative z-30">
+          <Link href="/contact">
             <Button
-              className={`hidden md:inline-flex transition-all duration-300 wobble-on-hover ${
-                isScrolled ? "bg-primary text-white hover:bg-primary" : "bg-white text-primary hover:bg-white"
+              className={`transition-all duration-300 relative z-30 ${
+                visible ? "bg-primary text-white hover:bg-primary-dark" : "bg-white text-primary hover:bg-white/90"
               }`}
             >
               Obtenir un Devis
             </Button>
           </Link>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden z-50 relative"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span
-                className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-0.5" : "rotate-0 -translate-y-1"
-                } ${isScrolled ? "bg-black" : "bg-white"}`}
-              ></span>
-              <span
-                className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "opacity-0" : "opacity-100"
-                } ${isScrolled ? "bg-black" : "bg-white"}`}
-              ></span>
-              <span
-                className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-0.5" : "rotate-0 translate-y-1"
-                } ${isScrolled ? "bg-black" : "bg-white"}`}
-              ></span>
-            </div>
-          </button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Mobile Navigation - Full Screen Overlay with Scroll */}
-      <div
-        className={`fixed inset-0 bg-gradient-to-br from-primary via-primary-dark to-primary-darker z-40 transform transition-all duration-500 ease-in-out md:hidden ${
-          isMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+      {/* Mobile Navigation */}
+      <motion.div
+        animate={{
+          backdropFilter: visible ? "blur(10px)" : "none",
+          boxShadow: visible
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "90%" : "100%",
+          paddingRight: visible ? "12px" : "16px",
+          paddingLeft: visible ? "12px" : "16px",
+          y: visible ? 20 : 0,
+          backgroundColor: visible ? "#FFFFFF" : "transparent",
+        }}
+        style={{
+          borderRadius: visible ? "0.375rem" : "2rem",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 50,
+        }}
+        className={`relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden ${
+          visible ? "bg-white/80" : "bg-transparent"
         }`}
       >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-white rounded-full blur-3xl"></div>
+        <div className="flex w-full flex-row items-center justify-between">
+          {/* Mobile Logo */}
+          <Link href="/" className="flex items-center">
+            <Image src="/favicon.jpg" alt="Decora Sol" width={120} height={40} className="h-10 w-auto rounded-full" />
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className={`p-2 rounded-full ${visible ? "text-black" : "text-white"}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Scrollable Content Container */}
-        <div className="relative h-full overflow-y-auto">
-          <div className="min-h-full flex flex-col">
-            {/* Header - Fixed at top */}
-            <div className="flex-shrink-0 flex items-center justify-between p-4 pt-6">
-              <Image
-                src="/favicon.jpg"
-                alt="Decora Sol Logo"
-                width={120}
-                height={60}
-                className="h-10 w-auto rounded-full"
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              {/* Semi-transparent overlay */}
+              <motion.div
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileMenuOpen(false)}
               />
-            </div>
 
-            {/* Main Content - Flexible */}
-            <div className="flex-1 flex flex-col justify-center px-6 py-8 min-h-0">
-              {/* Navigation Links */}
-              <nav className="space-y-1 mb-8">
-                <MobileNavLink
-                  href="/"
-                  icon={<Home className="w-5 h-5" />}
-                  onClick={() => setIsMenuOpen(false)}
-                  delay="0.1s"
-                >
-                  Accueil
-                </MobileNavLink>
-                <MobileNavLink
-                  href="/"
-                  icon={<Info className="w-5 h-5" />}
-                  onClick={() => setIsMenuOpen(false)}
-                  delay="0.2s"
-                >
-                  À Propos
-                </MobileNavLink>
-                <MobileNavLink
-                  href="/"
-                  icon={<ImageIcon className="w-5 h-5" />}
-                  onClick={() => setIsMenuOpen(false)}
-                  delay="0.3s"
-                >
-                  Galerie
-                </MobileNavLink>
-                <MobileNavLink
-                  href="/"
-                  icon={<Phone className="w-5 h-5" />}
-                  onClick={() => setIsMenuOpen(false)}
-                  delay="0.4s"
-                >
-                  Contact
-                </MobileNavLink>
-              </nav>
-
-              {/* CTA Section */}
-              <div
-                className={`space-y-4 transform transition-all duration-700 ${
-                  isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
-                style={{ transitionDelay: "0.5s" }}
+              {/* Mobile menu panel */}
+              <motion.div
+                ref={menuRef}
+                className="absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
-                <div className="text-center mb-4">
-                  <h3 className="text-white text-lg font-semibold mb-1">Prêt à commencer?</h3>
-                  <p className="text-white/80 text-sm">Obtenez votre devis gratuit</p>
-                </div>
-
-                <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-white text-primary hover:bg-gray-100 py-3 text-base font-semibold rounded-xl shadow-lg group">
-                    <span>Obtenir un Devis</span>
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-
-                {/* Contact Info */}
-                <div className="pt-4 border-t border-white/20">
-                  <div className="flex items-center justify-center space-x-4 text-white/80">
-                    <a
-                      href="tel:+212666865356"
-                      className="flex items-center space-x-2 hover:text-white transition-colors text-sm"
+                {/* Navigation Links */}
+                <div className="w-full space-y-2">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
+                      className="w-full"
                     >
-                      <Phone className="w-4 h-4" />
-                      <span>+212 666-865356</span>
-                    </a>
-                  </div>
+                      <Link
+                        href={item.href}
+                        className={`flex items-center py-3 px-4 rounded-lg font-medium text-base transition-all ${
+                          pathname && pathname === item.href
+                            ? "bg-gray-100 text-primary"
+                            : "text-gray-800 hover:bg-gray-50"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span>{item.name}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
-            </div>
 
-            {/* Footer - Fixed at bottom */}
-            <div className="flex-shrink-0 p-4 text-center">
-              <p className="text-white/60 text-xs">© 2024 Decora Sol. Tous droits réservés.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
-}
-
-function NavLinks({ textColor, onClick }: { textColor: string; onClick?: () => void }) {
-  return (
-    <>
-      <Link href="/" className={`${textColor} hover:text-primary font-medium nav-link-underline`} onClick={onClick}>
-        Accueil
-      </Link>
-      <Link
-        href="/"
-        className={`${textColor} hover:text-primary font-medium nav-link-underline`}
-        onClick={onClick}
-      >
-        À Propos
-      </Link>
-      <Link
-        href="/"
-        className={`${textColor} hover:text-primary font-medium nav-link-underline`}
-        onClick={onClick}
-      >
-        Galerie
-      </Link>
-      <Link
-        href="/"
-        className={`${textColor} hover:text-primary font-medium nav-link-underline`}
-        onClick={onClick}
-      >
-        Contact
-      </Link>
-    </>
-  )
-}
-
-function MobileNavLink({
-  href,
-  onClick,
-  children,
-  icon,
-  delay,
-}: {
-  href: string
-  onClick?: () => void
-  children: React.ReactNode
-  icon: React.ReactNode
-  delay: string
-}) {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), Number.parseFloat(delay) * 1000)
-    return () => clearTimeout(timer)
-  }, [delay])
-
-  return (
-    <Link
-      href={href}
-      className={`group flex items-center space-x-3 text-white hover:text-white/80 py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-300 transform ${
-        isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
-      }`}
-      onClick={onClick}
-      style={{ transitionDelay: delay }}
-    >
-      <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-xl group-hover:bg-white/20 transition-colors duration-300">
-        {icon}
-      </div>
-      <span className="text-lg font-medium flex-1">{children}</span>
-      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-    </Link>
+                {/* CTA Button for Mobile */}
+                <div className="w-full mt-4 pt-4 border-t border-gray-100">
+                  <Link href="/contact" className="w-full">
+                    <Button
+                      className="w-full bg-primary text-white hover:bg-primary-dark"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Obtenir un Devis
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.header>
   )
 }

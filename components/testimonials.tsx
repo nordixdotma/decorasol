@@ -12,43 +12,63 @@ import "swiper/css"
 const testimonials = [
   {
     id: 1,
-    name: "Fatima Benali",
-    role: "Propriétaire",
-    image: "t4.png",
+    name: "Ahmed Benali",
+    role: "Propriétaire de Villa",
+    image: "t1.png",
     quote:
-      "DECO DARI a complètement transformé notre maison. Leur expertise en design d'intérieur a créé un espace à la fois élégant et fonctionnel.",
+      "Decora Sol a transformé notre salon avec un magnifique parquet en chêne. Le travail est impeccable et l'équipe très professionnelle. Je recommande vivement leurs services.",
     rating: 5.0,
     bgColor: "bg-primary-lightest",
   },
   {
     id: 2,
-    name: "Mohammed El Amrani",
-    role: "Propriétaire d'Entreprise",
+    name: "Fatima El Amrani",
+    role: "Propriétaire d'Appartement",
     image: "t2.png",
     quote:
-      "L'équipe de DECO DARI a conçu notre espace de bureau avec un parfait équilibre entre esthétique et fonctionnalité. Un travail remarquable!",
+      "Installation parfaite de planchers en bois dans toute notre maison. L'équipe de Decora Sol est ponctuelle, soigneuse et le résultat dépasse nos attentes. Excellent rapport qualité-prix.",
     rating: 5.0,
     bgColor: "bg-primary-light",
   },
   {
     id: 3,
-    name: "Amina Tazi",
-    role: "Propriétaire d'Appartement",
+    name: "Youssef Tazi",
+    role: "Architecte",
     image: "t3.png",
     quote:
-      "Je suis impressionnée par la capacité de DECO DARI à maximiser notre petit espace tout en créant une ambiance luxueuse et accueillante.",
+      "En tant qu'architecte, j'apprécie la qualité du travail de Decora Sol. Leurs planchers en bois apportent une vraie valeur ajoutée à mes projets. Une équipe de confiance.",
     rating: 5.0,
     bgColor: "bg-primary-lighter",
   },
   {
     id: 4,
-    name: "Youssef Alaoui",
-    role: "Architecte",
-    image: "t1.png",
+    name: "Amina Alaoui",
+    role: "Propriétaire de Restaurant",
+    image: "t4.png",
     quote:
-      "En tant qu'architecte, j'apprécie le souci du détail et la créativité que DECO DARI apporte à chaque projet. Une collaboration exceptionnelle.",
+      "Pour notre restaurant, nous voulions un sol en bois chaleureux et résistant. Decora Sol a su répondre parfaitement à nos besoins avec un parquet adapté au passage intensif.",
     rating: 5.0,
     bgColor: "bg-primary-lightest",
+  },
+  {
+    id: 5,
+    name: "Mohamed Chakir",
+    role: "Propriétaire de Riad",
+    image: "t1.png",
+    quote:
+      "Rénovation complète des sols de notre riad avec des planchers en bois traditionnels. Le savoir-faire de Decora Sol a préservé l'authenticité tout en apportant une touche moderne.",
+    rating: 5.0,
+    bgColor: "bg-primary-light",
+  },
+  {
+    id: 6,
+    name: "Khadija Bennani",
+    role: "Décoratrice d'Intérieur",
+    image: "t2.png",
+    quote:
+      "Je collabore régulièrement avec Decora Sol pour mes projets. Leur expertise en planchers bois et leur respect des délais en font un partenaire de choix pour mes clients.",
+    rating: 5.0,
+    bgColor: "bg-primary-lighter",
   },
 ]
 
@@ -62,7 +82,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           title="Témoignages"
-          subtitle="Découvrez ce que nos clients disent de leur expérience avec DECO DARI."
+          subtitle="Découvrez ce que nos clients disent de leur expérience avec Decora Sol et nos installations de planchers en bois."
         />
 
         <div className="mt-12 md:mt-16 mb-8">
@@ -148,7 +168,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-4 h-4 md:w-5 md:h-5 text-black"
+              className="w-4 h-4 md:w-5 md:h-5 text-primary"
             >
               <path
                 fillRule="evenodd"
