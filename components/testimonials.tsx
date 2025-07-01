@@ -18,7 +18,7 @@ const testimonials = [
     quote:
       "Decora Sol a transformé notre salon avec un magnifique parquet en chêne. Le travail est impeccable et l'équipe très professionnelle. Je recommande vivement leurs services.",
     rating: 5.0,
-    bgColor: "bg-primary-lightest",
+    bgColor: "bg-primary/5", // Very light primary
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const testimonials = [
     quote:
       "Installation parfaite de planchers en bois dans toute notre maison. L'équipe de Decora Sol est ponctuelle, soigneuse et le résultat dépasse nos attentes. Excellent rapport qualité-prix.",
     rating: 5.0,
-    bgColor: "bg-primary-light",
+    bgColor: "bg-primary/10", // Light primary
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const testimonials = [
     quote:
       "En tant qu'architecte, j'apprécie la qualité du travail de Decora Sol. Leurs planchers en bois apportent une vraie valeur ajoutée à mes projets. Une équipe de confiance.",
     rating: 5.0,
-    bgColor: "bg-primary-lighter",
+    bgColor: "bg-primary/8", // Medium light primary
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const testimonials = [
     quote:
       "Pour notre restaurant, nous voulions un sol en bois chaleureux et résistant. Decora Sol a su répondre parfaitement à nos besoins avec un parquet adapté au passage intensif.",
     rating: 5.0,
-    bgColor: "bg-primary-lightest",
+    bgColor: "bg-primary/6", // Light primary
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const testimonials = [
     quote:
       "Rénovation complète des sols de notre riad avec des planchers en bois traditionnels. Le savoir-faire de Decora Sol a préservé l'authenticité tout en apportant une touche moderne.",
     rating: 5.0,
-    bgColor: "bg-primary-light",
+    bgColor: "bg-primary/12", // Medium primary
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ const testimonials = [
     quote:
       "Je collabore régulièrement avec Decora Sol pour mes projets. Leur expertise en planchers bois et leur respect des délais en font un partenaire de choix pour mes clients.",
     rating: 5.0,
-    bgColor: "bg-primary-lighter",
+    bgColor: "bg-primary/7", // Light primary
   },
 ]
 
@@ -134,48 +134,54 @@ type Testimonial = {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="relative h-full mt-10 mb-4">
+    <div className="relative h-full">
       {/* Card */}
-      <div className={`${testimonial.bgColor} rounded-2xl p-5 md:p-6 pt-14 md:pt-16 h-full flex flex-col shadow-sm`}>
-        {/* Profile Image - positioned at the top of the card */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="rounded-full border-4 border-white overflow-hidden h-16 w-16 md:h-20 md:w-20 shadow-md">
+      <div
+        className={`${testimonial.bgColor} rounded-2xl p-6 md:p-8 h-full flex flex-col shadow-lg border border-primary/20 relative overflow-hidden`}
+      >
+        {/* Profile Image - positioned at top right with rounded bottom-left corner */}
+        <div className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden">
+          <div className="w-full h-full relative" style={{ borderBottomLeftRadius: "1rem" }}>
             <Image
               src={testimonial.image || "/placeholder.svg"}
               alt={testimonial.name}
-              width={80}
-              height={80}
-              className="object-cover w-full h-full"
+              fill
+              className="object-cover"
+              style={{ borderBottomLeftRadius: "1rem" }}
             />
           </div>
         </div>
 
-        {/* Quote */}
-        <p className="text-gray-700 text-center text-sm md:text-base mb-4 md:mb-6 flex-grow">{testimonial.quote}</p>
+        {/* Brand Logo - top left */}
+        <div className="flex items-center mb-6">
+          <Image src="/favicon.jpg" alt="Decora Sol" width={32} height={32} className="rounded-full mr-3" />
+          <span className="font-bold text-lg text-gray-800">Decora Sol</span>
+        </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-gray-200 my-3 md:my-4"></div>
-
-        {/* Footer */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h4 className="font-semibold text-gray-800 text-sm md:text-base">{testimonial.name}</h4>
-            <p className="text-gray-600 text-xs md:text-sm">{testimonial.role}</p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-1 font-semibold text-sm md:text-base">{testimonial.rating.toFixed(1)}</span>
+        {/* Quote Icon */}
+        <div className="mb-4">
+          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-4 h-4 md:w-5 md:h-5 text-primary"
+              className="w-5 h-5 text-white"
             >
-              <path
-                fillRule="evenodd"
-                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                clipRule="evenodd"
-              />
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
             </svg>
+          </div>
+        </div>
+
+        {/* Quote */}
+        <p className="text-gray-700 text-sm md:text-base mb-6 flex-grow leading-relaxed pr-6">{testimonial.quote}</p>
+
+        {/* Footer with name and role */}
+        <div className="flex justify-between items-end">
+          <div>
+            <h4 className="font-bold text-gray-900 text-base md:text-lg">{testimonial.name}</h4>
+          </div>
+          <div className="text-right">
+            <p className="text-gray-600 text-sm">{testimonial.role}</p>
           </div>
         </div>
       </div>

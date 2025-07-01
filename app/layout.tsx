@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -8,6 +9,12 @@ import Loader from "@/components/loader"
 import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/json-ld"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -83,7 +90,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -96,7 +103,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
-      <body className="futura-font">
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Suspense fallback={null}>
             <LocalBusinessJsonLd />
