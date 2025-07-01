@@ -71,7 +71,7 @@ export default function Hero() {
             {/* Buttons Container - Full width on mobile, side by side on desktop */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               {/* Contact Button */}
-              <Link href="/" className="w-full sm:w-auto">
+              <Link href="/contact" className="w-full sm:w-auto">
                 <Button className="group relative overflow-hidden rounded-md bg-white text-primary hover:bg-primary hover:text-white transition-all duration-700 px-8 py-6 text-lg font-medium shadow-lg w-full sm:w-auto">
                   <span className="relative z-10">Contactez-Nous</span>
                   <span className="absolute bottom-0 left-0 h-full w-0 bg-primary transition-all duration-700 group-hover:w-full"></span>
