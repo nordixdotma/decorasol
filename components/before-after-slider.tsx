@@ -89,13 +89,13 @@ export default function BeforeAfterSlider({ items }: BeforeAfterSliderProps) {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       {/* Main Container */}
       <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
         {/* Image Comparison Area */}
         <div
           ref={containerRef}
-          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[400px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[450px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleEnd}

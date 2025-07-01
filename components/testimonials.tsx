@@ -78,7 +78,7 @@ export default function Testimonials() {
   const swiperRef = useRef<SwiperClass | null>(null)
 
   return (
-    <section id="testimonials" className="py-12 md:py-20 bg-white overflow-hidden">
+    <section id="testimonials" className="py-12 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           title="Témoignages"

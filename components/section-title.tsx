@@ -5,8 +5,8 @@ interface SectionTitleProps {
 
 export default function SectionTitle({ title, subtitle }: SectionTitleProps) {
   return (
-    <div className="text-center mb-10 md:mb-16">
-      <div className="inline-block bg-primary/10 rounded-full px-4 py-1.5 md:px-6 md:py-2 mb-3 md:mb-4">
+    <div className="text-center mb-0">
+      <div className="inline-block bg-primary/10 rounded-full px-4 py-1.5 md:px-6 md:py-2 mb-0 md:mb-0">
         <h2 className="text-primary text-xl md:text-2xl lg:text-3xl font-bold">{title}</h2>
       </div>
 

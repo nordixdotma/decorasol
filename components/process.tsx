@@ -49,7 +49,7 @@ export default function Process() {
   const swiperRef = useRef<SwiperType | null>(null)
 
   return (
-    <section id="process" className="py-20 bg-white overflow-hidden">
+    <section id="process" className="py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           title="Notre Processus"

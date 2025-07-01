@@ -31,7 +31,7 @@ const beforeAfterItems = [
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-20 bg-white">
+    <section id="gallery" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           title="Avant / Après"

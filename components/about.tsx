@@ -8,7 +8,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-16 md:py-24 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden"
+      className="py-12 md:py-16 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
