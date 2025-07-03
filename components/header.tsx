@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Facebook, Instagram } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
@@ -237,16 +237,51 @@ export default function Header() {
                   ))}
                 </div>
 
-                {/* CTA Button for Mobile */}
-                <div className="w-full mt-4 pt-4 border-t border-gray-100">
-                  <Link href="/contact" className="w-full">
-                    <Button
-                      className="w-full bg-primary text-white hover:bg-primary-dark"
-                      onClick={() => setMobileMenuOpen(false)}
+                {/* Social Media Links */}
+                <div className="w-full pt-4 border-t border-gray-100">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
+                    className="flex items-center justify-center space-x-4 mb-4"
+                  >
+                    <a
+                      href="https://web.facebook.com/profile.php?id=100091396990504"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1877F2] hover:bg-[#166FE5] text-white rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
+                      aria-label="Suivez-nous sur Facebook"
                     >
-                      Obtenir un Devis
-                    </Button>
-                  </Link>
+                      <Facebook className="h-6 w-6" />
+                    </a>
+                    <a
+                      href="https://www.instagram.com/decorasol_top"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#E4405F] via-[#F56040] to-[#FFDC80] hover:from-[#D73447] hover:via-[#E1552F] hover:to-[#FFCD5C] text-white rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
+                      aria-label="Suivez-nous sur Instagram"
+                    >
+                      <Instagram className="h-6 w-6" />
+                    </a>
+                  </motion.div>
+                </div>
+
+                {/* CTA Button for Mobile */}
+                <div className="w-full">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                  >
+                    <Link href="/contact" className="w-full">
+                      <Button
+                        className="w-full bg-primary text-white hover:bg-primary-dark"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Obtenir un Devis
+                      </Button>
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             </>
