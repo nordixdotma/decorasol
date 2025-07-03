@@ -32,11 +32,11 @@ export async function submitContactForm(formData: ContactFormData) {
 
     // Company info for email footer
     const companyInfo = {
-      name: "Deco Dari Ameublement",
-      address: "449 1 SECTEUR 017960, Marrakech 40100",
-      phone: "+212 611-325349",
-      email: "decodariambl@gmail.com",
-      website: "https://decodari.com",
+      name: "Decora Sol",
+      address: "Marrakech, Maroc",
+      phone: "+212 666-865356",
+      email: "Decorasol21@gmail.com",
+      website: "https://decorasol.ma",
     }
 
     // Create HTML email template
@@ -91,12 +91,12 @@ export async function submitContactForm(formData: ContactFormData) {
           }
           .field-label {
             font-weight: bold;
-            color: #41879e;
+            color: #8b4513;
           }
           .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #41879e;
+            background-color: #8b4513;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -107,7 +107,8 @@ export async function submitContactForm(formData: ContactFormData) {
       <body>
         <div class="container">
           <div class="header">
-            <img src="https://i.ibb.co/d4FV7HCF/logo-black.png" alt="Deco Dari Ameublement" class="logo">
+            <h1 style="color: #8b4513; margin: 0;">Decora Sol</h1>
+            <p style="margin: 5px 0 0 0; color: #666;">Installation de Planchers en Bois</p>
           </div>
           
           <div class="content">
@@ -154,7 +155,7 @@ export async function submitContactForm(formData: ContactFormData) {
               Téléphone: ${companyInfo.phone}<br>
               Email: ${companyInfo.email}
             </p>
-            <p>© ${new Date().getFullYear()} ${companyInfo.name}. Tous droits r��servés.</p>
+            <p>© ${new Date().getFullYear()} ${companyInfo.name}. Tous droits réservés.</p>
           </div>
         </div>
       </body>
@@ -187,10 +188,10 @@ export async function submitContactForm(formData: ContactFormData) {
     // Set up email options
     const mailOptions = {
       from: {
-        name: "Deco Dari Website",
-        address: process.env.EMAIL_FROM || process.env.EMAIL_USER || "noreply@decodari.com",
+        name: "Decora Sol Website",
+        address: process.env.EMAIL_FROM || process.env.EMAIL_USER || "noreply@decorasol.ma",
       },
-      to: process.env.EMAIL_TO || "decodariambl@gmail.com",
+      to: process.env.EMAIL_TO || "Decorasol21@gmail.com",
       replyTo: validatedData.email,
       subject: `Nouveau message de contact: ${validatedData.subject}`,
       text: textContent,
@@ -199,7 +200,7 @@ export async function submitContactForm(formData: ContactFormData) {
         "X-Priority": "1", // High priority
         "X-MSMail-Priority": "High",
         Importance: "High",
-        "X-Mailer": "Deco Dari Website Contact Form",
+        "X-Mailer": "Decora Sol Website Contact Form",
       },
     }
 

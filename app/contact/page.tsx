@@ -8,22 +8,23 @@ import FloatingContact from "@/components/floating-contact"
 import Breadcrumb from "@/components/breadcrumb"
 
 export const metadata: Metadata = {
-  title: "Contact | Deco Dari Ameublement",
+  title: "Contact | Decora Sol - Installation Planchers Bois Marrakech",
   description:
-    "Contactez notre équipe de design d'intérieur à Marrakech. Obtenez un devis pour votre projet résidentiel, hôtelier ou médical.",
+    "Contactez Decora Sol pour vos projets d'installation de planchers en bois à Marrakech. Obtenez un devis gratuit pour votre projet résidentiel ou commercial.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact | Deco Dari Ameublement",
-    description: "Contactez notre équipe de design d'intérieur à Marrakech. Obtenez un devis pour votre projet.",
-    url: "https://decodariambl.ma/contact",
+    title: "Contact | Decora Sol - Installation Planchers Bois Marrakech",
+    description:
+      "Contactez Decora Sol pour vos projets d'installation de planchers en bois à Marrakech. Obtenez un devis gratuit.",
+    url: "https://decorasol.ma/contact",
     images: [
       {
         url: "/aboutimage.png",
         width: 1200,
         height: 630,
-        alt: "Contactez Deco Dari Ameublement",
+        alt: "Contactez Decora Sol",
       },
     ],
   },

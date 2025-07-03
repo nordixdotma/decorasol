@@ -37,7 +37,7 @@ export default function AboutPage() {
       <section className="relative h-[50dvh] w-full overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image src="/2.jpg" alt="À Propos de Deco Dari Ameublement" fill className="object-cover" priority />
+          <Image src="https://plus.unsplash.com/premium_photo-1661876059928-3083512ebd54?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="À Propos de Decora Sol" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
 
@@ -95,8 +95,8 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-primary/20 rounded-2xl transform transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3"></div>
               <div className="relative overflow-hidden rounded-2xl shadow-xl">
                 <Image
-                  src="/aboutimage.png"
-                  alt="À Propos de Deco dari ameublement"
+                  src="/favicon.jpg"
+                  alt="À Propos de Decora Sol"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"

@@ -67,7 +67,7 @@ export default function Loader() {
       >
         <Image
           src="/favicon.jpg"
-          alt="DECO DARI Logo"
+          alt="Decora Sol Logo"
           width={120}
           height={60}
           className="h-16 w-auto rounded-full"

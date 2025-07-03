@@ -102,15 +102,19 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
+        {/* Disable browser auto-translation */}
+        <meta name="google" content="notranslate" />
+        <meta name="robots" content="notranslate" />
+        <meta httpEquiv="Content-Language" content="fr" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} translate="no">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Suspense fallback={null}>
             <LocalBusinessJsonLd />
             <WebsiteJsonLd />
             <Loader />
             <Header />
-            {children}
+            <div translate="no">{children}</div>
             <Footer />
             <Analytics />
           </Suspense>

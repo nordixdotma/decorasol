@@ -18,7 +18,7 @@ const slides = [
     description: "Notre devise est la qualité - Installation précise et durable",
   },
   {
-    image: "/3.avif",
+    image: "https://plus.unsplash.com/premium_photo-1676823570439-fc0f2240946a?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Expertise en Parquet",
     description: "Transformez vos espaces avec nos planchers en bois premium",
   },
